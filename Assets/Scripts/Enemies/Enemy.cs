@@ -3,6 +3,7 @@ using System.Collections;
 using HealthSystem;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Serialization;
 
 namespace Enemies
 {
@@ -12,6 +13,8 @@ namespace Enemies
         [SerializeField] public NavMeshAgent agent;
         [SerializeField] private UHealth health;
         private GameObject _townCenter;
+        private ITargetGiverService _targetGiverService;
+        private Building _building;
         public event Action OnSpawn = delegate { };
         public event Action OnDeath = delegate { };
         public event Action<GameObject> OnDeath1 = delegate { };
@@ -21,6 +24,7 @@ namespace Enemies
         private void Awake()
         {
             FetchComponents();
+            _targetGiverService = ServiceLocator.Instance.GetService<ITargetGiverService>();
             health.OnDead += Die;
         }
 
@@ -30,14 +34,23 @@ namespace Enemies
             health ??= GetComponent<UHealth>();
         }
 
+
         private void OnEnable()
         {
             //Is this necessary?? We're like, searching for it from every enemy D:
-            if(!_townCenter)
-                _townCenter = GameObject.FindGameObjectWithTag("TownCenter");//solo Busca Cuando se Crea
+            if (!_townCenter)
+                //_townCenter = GameObject.FindGameObjectWithTag("TownCenter");//solo Busca Cuando se Crea
+            {
+                if (_targetGiverService.tryToGet(out _townCenter))
+                {
+                    _building= _townCenter.GetComponent<Building>();
+                    _building.OnDestoyed += GetNewTarget;
+                }
+            }
+            
             if (_townCenter == null)
             {
-                Debug.LogError($"{name}: Found no {nameof(_townCenter)}!! :(");
+                //Debug.LogError($"{name}: Found no {nameof(_townCenter)}!! :(");
                 return;
             }
 
@@ -69,7 +82,6 @@ namespace Enemies
                 if(_townCenter.TryGetComponent(out UHealth uHealth))
                     uHealth.TakeDamage(50);
                 health.TakeDamage(100);
-                //Die();
             }
         }
 
@@ -83,5 +95,24 @@ namespace Enemies
             gameObject.SetActive(false);
             //Destroy(gameObject);
         }
-    }
+
+        private void GetNewTarget()
+        {
+            _building.OnDestoyed -= GetNewTarget;
+            if (_targetGiverService.tryToGet(out _townCenter)&& gameObject.activeSelf==true )// nose porque se activava La corutina sin el segundo chequeo
+            {
+                _building = _townCenter.GetComponent<Building>();
+                _building.OnDestoyed += GetNewTarget;
+                var destination = _townCenter.transform.position;
+                destination.y = transform.position.y;
+                StartCoroutine(Waiting(destination));
+            }
+            else
+            {
+                Die();
+            }
+        }
+
+    } 
 }
+

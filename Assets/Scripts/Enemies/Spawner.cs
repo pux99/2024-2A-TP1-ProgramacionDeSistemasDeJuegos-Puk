@@ -10,6 +10,8 @@ public class Spawner : MonoBehaviour
     [SerializeField] private float frequency = 30;
     [SerializeField] private float period = 0;
     private IGoblinService _goblinService;
+    private ITargetGiverService _targetService;
+    private bool _raidIsActive = true;
 
     private void OnEnable()
     {
@@ -19,7 +21,9 @@ public class Spawner : MonoBehaviour
     private IEnumerator Start()
     {
         _goblinService = ServiceLocator.Instance.GetService<IGoblinService>();
-        while (!destroyCancellationToken.IsCancellationRequested)
+        _targetService = ServiceLocator.Instance.GetService<ITargetGiverService>();
+        _targetService.NoMoreBuildings += EndRaid;
+        while (!destroyCancellationToken.IsCancellationRequested&&_raidIsActive)
         {
             for (int i = 0; i < spawnsPerPeriod; i++)
             {
@@ -29,5 +33,10 @@ public class Spawner : MonoBehaviour
 
             yield return new WaitForSeconds(period);
         }
+    }
+
+    void EndRaid()
+    {
+        _raidIsActive = false;
     }
 }

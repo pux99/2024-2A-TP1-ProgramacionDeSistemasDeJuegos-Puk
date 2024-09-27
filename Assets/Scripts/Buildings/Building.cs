@@ -8,16 +8,34 @@ public class Building : MonoBehaviour
 {
     [SerializeField] private UHealth health;
     [SerializeField] private int respawnTimer;
+    private ITargetGiverService _targetGiverService;
+    public Action OnDestoyed;
+    private MeshRenderer _meshRenderer;
+    private IEnumerator _respawn;
+
+    private void Awake()
+    {
+        _targetGiverService = ServiceLocator.Instance.GetService<ITargetGiverService>();
+        _targetGiverService.AddTarget(this.gameObject);
+        _targetGiverService.NoMoreBuildings += StopRespawn;
+    }
 
     private void Start()
     {
+        
         health.OnDead += Destroyed;
+        _meshRenderer = GetComponent<MeshRenderer>();
+
     }
 
     void Destroyed()
     {
         //gameObject.SetActive(false);
-        StartCoroutine(Respawn(respawnTimer));
+        OnDestoyed?.Invoke();
+        _meshRenderer.enabled = false;
+        _targetGiverService.RemoveTarget(this.gameObject);
+        _respawn = Respawn(respawnTimer);
+        StartCoroutine(_respawn);
     }
     
     IEnumerator Respawn(int timer)
@@ -25,6 +43,12 @@ public class Building : MonoBehaviour
         yield return new WaitForSeconds(timer);
         gameObject.SetActive(true);
         health.FullHeal();
-        
+        _meshRenderer.enabled = true;
+        _targetGiverService.AddTarget(this.gameObject);
+    }
+
+    void StopRespawn()
+    {
+        StopCoroutine(_respawn);
     }
 }
