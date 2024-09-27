@@ -5,13 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f807ec19-ba05-406b-b8a4-fafacbef9053" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/ServiceLocator/TargetGiverService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/ServiceLocator/TargetGiverService.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.2024-2A-TP1-ProgramacionDeSistemasDeJuegos-Puk/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.2024-2A-TP1-ProgramacionDeSistemasDeJuegos-Puk/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Enemy.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Enemy.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/Building.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Buildings/Building.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemies/Enemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemies/Enemy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemies/Spawner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemies/Spawner.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,7 +109,7 @@
       <workItem from="1727373871631" duration="174000" />
       <workItem from="1727374369432" duration="117000" />
       <workItem from="1727375614692" duration="3062000" />
-      <workItem from="1727381072110" duration="38205000" />
+      <workItem from="1727381072110" duration="38619000" />
     </task>
     <servers />
   </component>

@@ -26,6 +26,7 @@ namespace Enemies
             FetchComponents();
             _targetGiverService = ServiceLocator.Instance.GetService<ITargetGiverService>();
             health.OnDead += Die;
+            _targetGiverService.NoMoreBuildings += Die;
         }
 
         private void FetchComponents()

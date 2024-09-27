@@ -5,7 +5,7 @@ using UnityEngine;
 public class EndOfGameManager : MonoBehaviour
 {
     private ITargetGiverService _targetService;
-    private UIManager _uiManager;
+    [SerializeField]private UIManager uiManager;
     private void Start()
     {
         _targetService = ServiceLocator.Instance.GetService<ITargetGiverService>();
@@ -14,6 +14,6 @@ public class EndOfGameManager : MonoBehaviour
 
     private void GoblisWin()
     {
-        _uiManager.GoblisWin();
+        uiManager.GoblisWin();
     }
 }
