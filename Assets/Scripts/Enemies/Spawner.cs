@@ -25,13 +25,14 @@ public class Spawner : MonoBehaviour
         _targetService.NoMoreBuildings += EndRaid;
         while (!destroyCancellationToken.IsCancellationRequested&&_raidIsActive)
         {
+            yield return new WaitForSeconds(period);
             for (int i = 0; i < spawnsPerPeriod; i++)
             {
                 GameObject newGoblin = _goblinService.CreateGoblin(transform.position, transform.rotation);
                 //Instantiate(characterPrefab, transform.position, transform.rotation);
             }
 
-            yield return new WaitForSeconds(period);
+            
         }
     }
 

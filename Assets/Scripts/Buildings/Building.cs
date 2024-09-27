@@ -15,16 +15,17 @@ public class Building : MonoBehaviour
 
     private void Awake()
     {
-        _targetGiverService = ServiceLocator.Instance.GetService<ITargetGiverService>();
-        _targetGiverService.AddTarget(this.gameObject);
-        _targetGiverService.NoMoreBuildings += StopRespawn;
+        
     }
 
     private void Start()
     {
-        
         health.OnDead += Destroyed;
         _meshRenderer = GetComponent<MeshRenderer>();
+        _targetGiverService = ServiceLocator.Instance.GetService<ITargetGiverService>();
+        _targetGiverService.AddTarget(this.gameObject);
+        _targetGiverService.NoMoreBuildings += StopRespawn;
+        
 
     }
 

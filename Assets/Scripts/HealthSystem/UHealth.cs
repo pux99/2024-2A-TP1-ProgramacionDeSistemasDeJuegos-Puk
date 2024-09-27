@@ -11,13 +11,17 @@ namespace HealthSystem
         private Health _health ;
         public Action OnDead;
 
-        private void Start()
+        private void Awake()
         {
             _health = new Health(maxHp,currentHp);
             _health.OnHeal +=LifeChange ;
             _health.OnDamage += LifeChange;
-            _health.OnDeath += OnDead;
-            _health.TakeDamage(5);
+            _health.OnDeath += death;
+        }
+
+        private void Start()
+        {
+            
         }
 
         public void Heal(int heal)
@@ -36,6 +40,11 @@ namespace HealthSystem
         private void LifeChange(int oldHp, int newHp)
         {
             currentHp = newHp;
+        }
+
+        void death()
+        {
+            OnDead?.Invoke();
         }
     }
 }
