@@ -1,3 +1,4 @@
+using FlyWeight;
 using UnityEngine;
 
 namespace Enemies
@@ -6,7 +7,7 @@ namespace Enemies
     public class EnemyVfx : MonoBehaviour
     {
         private Enemy _enemy;
-        [SerializeField] private RandomContainer<ParticleSystem> deathPrefabs;
+        [SerializeField] private SoParticles deathPrefabs;
 
         private void Reset() => FetchComponents();
 
@@ -29,7 +30,7 @@ namespace Enemies
 
         private void HandleDeath()
         {
-            if(!deathPrefabs.TryGetRandom(out var prefab))
+            if(!deathPrefabs.particles.TryGetRandom(out var prefab))
                 return;
             var vfx = Instantiate(prefab, transform.position, transform.rotation);
             var mainModule = vfx.main;

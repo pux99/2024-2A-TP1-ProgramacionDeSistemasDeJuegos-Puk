@@ -8,9 +8,11 @@ namespace Enemies
     [RequireComponent(typeof(NavMeshAgent))]
     public class Enemy : MonoBehaviour
     {
-        [SerializeField] private NavMeshAgent agent;
+        [SerializeField] public NavMeshAgent agent;
+        private GameObject _townCenter;
         public event Action OnSpawn = delegate { };
         public event Action OnDeath = delegate { };
+        public event Action<GameObject> OnDeath1 = delegate { };
     
         private void Reset() => FetchComponents();
 
@@ -24,17 +26,24 @@ namespace Enemies
         private void OnEnable()
         {
             //Is this necessary?? We're like, searching for it from every enemy D:
-            var townCenter = GameObject.FindGameObjectWithTag("TownCenter");
-            if (townCenter == null)
+            if(!_townCenter)
+                _townCenter = GameObject.FindGameObjectWithTag("TownCenter");//solo Busca Cuando se Crea
+            if (_townCenter == null)
             {
-                Debug.LogError($"{name}: Found no {nameof(townCenter)}!! :(");
+                Debug.LogError($"{name}: Found no {nameof(_townCenter)}!! :(");
                 return;
             }
 
-            var destination = townCenter.transform.position;
+            var destination = _townCenter.transform.position;
             destination.y = transform.position.y;
-            agent.SetDestination(destination);
+            StartCoroutine(Waiting(destination));
             StartCoroutine(AlertSpawn());
+        }
+
+        private IEnumerator Waiting(Vector3 destination)
+        {
+            yield return 2;
+            agent.SetDestination(destination);
         }
 
         private IEnumerator AlertSpawn()
@@ -57,7 +66,12 @@ namespace Enemies
         private void Die()
         {
             OnDeath();
-            Destroy(gameObject);
+            OnDeath1(this.gameObject);
+            //agent.ResetPath();
+            //agent.isStopped = true;
+            //agent.updatePosition = false;
+            gameObject.SetActive(false);
+            //Destroy(gameObject);
         }
     }
 }

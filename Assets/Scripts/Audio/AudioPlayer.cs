@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -8,6 +9,7 @@ namespace Audio
     {
         [SerializeField] private OnFinishAction finishAction;
         private AudioSource _source;
+        public Action<AudioPlayer> EndOfSound;
         public AudioSource Source
         {
             get
@@ -44,12 +46,15 @@ namespace Audio
         private IEnumerator DestroySelfIn(float seconds)
         {
             yield return new WaitForSeconds(Mathf.Max(seconds, 0));
-            Destroy(gameObject);
+            EndOfSound(this);
+            //gameObject.SetActive(false);
+            //Destroy(gameObject);
         }
         
         private IEnumerator DeactivateIn(float seconds)
         {
             yield return new WaitForSeconds(Mathf.Max(seconds, 0));
+            EndOfSound(this);
             gameObject.SetActive(false);
         }
     }

@@ -1,5 +1,9 @@
+using System;
 using Audio;
+using FlyWeight;
+using Pool;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Enemies
 {
@@ -7,8 +11,10 @@ namespace Enemies
     public class EnemySfx : MonoBehaviour
     {
         [SerializeField] private AudioPlayer audioSourcePrefab;
-        [SerializeField] private RandomContainer<AudioClipData> spawnClips;
-        [SerializeField] private RandomContainer<AudioClipData> explosionClips;
+        [SerializeField] private SoAudioClipList spawnClips;
+        [SerializeField] private SoAudioClipList explosionClips;
+        [SerializeField] private ISoundService _soundService;
+
         private Enemy _enemy;
 
         private void Reset() => FetchComponents();
@@ -20,7 +26,12 @@ namespace Enemies
             // "a ??= b" is equivalent to "if(a == null) a = b" 
             _enemy ??= GetComponent<Enemy>();
         }
-        
+
+        private void Start()
+        {
+            _soundService = ServiceLocator.Instance.GetService<ISoundService>();
+        }
+
         private void OnEnable()
         {
             if (!audioSourcePrefab)
@@ -40,20 +51,20 @@ namespace Enemies
 
         private void HandleDeath()
         {
-            PlayRandomClip(explosionClips, audioSourcePrefab);
+            PlayRandomClip(explosionClips.clips, audioSourcePrefab);
         }
 
         private void HandleSpawn()
         {
-            PlayRandomClip(spawnClips, audioSourcePrefab);
+            PlayRandomClip(spawnClips.clips, audioSourcePrefab);
         }
 
         private void PlayRandomClip(RandomContainer<AudioClipData> container, AudioPlayer sourcePrefab)
         {
             if (!container.TryGetRandom(out var clipData))
                 return;
-            
-            SpawnSource(sourcePrefab).Play(clipData);
+            _soundService.PLay(clipData,transform.position, transform.rotation);
+            //SpawnSource(sourcePrefab).Play(clipData);
         }
 
         private AudioPlayer SpawnSource(AudioPlayer prefab)
