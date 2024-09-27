@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using HealthSystem;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,6 +10,7 @@ namespace Enemies
     public class Enemy : MonoBehaviour
     {
         [SerializeField] public NavMeshAgent agent;
+        [SerializeField] private UHealth health;
         private GameObject _townCenter;
         public event Action OnSpawn = delegate { };
         public event Action OnDeath = delegate { };
@@ -16,11 +18,16 @@ namespace Enemies
     
         private void Reset() => FetchComponents();
 
-        private void Awake() => FetchComponents();
-    
+        private void Awake()
+        {
+            FetchComponents();
+            health.OnDead += Die;
+        }
+
         private void FetchComponents()
         {
             agent ??= GetComponent<NavMeshAgent>();
+            health ??= GetComponent<UHealth>();
         }
 
         private void OnEnable()
@@ -59,7 +66,10 @@ namespace Enemies
                 && Vector3.Distance(transform.position, agent.destination) <= agent.stoppingDistance)
             {
                 Debug.Log($"{name}: I'll die for my people!");
-                Die();
+                if(_townCenter.TryGetComponent(out UHealth uHealth))
+                    uHealth.TakeDamage(50);
+                health.TakeDamage(100);
+                //Die();
             }
         }
 

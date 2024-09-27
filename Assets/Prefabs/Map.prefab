@@ -173,7 +173,6 @@ Transform:
   - {fileID: 6293256339439372946}
   - {fileID: 6123230812289191401}
   - {fileID: 7398054049965781950}
-  - {fileID: 8473715838366443870}
   - {fileID: 2550854700283842981}
   - {fileID: 5190388874486339210}
   - {fileID: 2964672124743231407}
@@ -257,6 +256,7 @@ Transform:
   - {fileID: 1837893884460121975}
   - {fileID: 3679504888702463060}
   - {fileID: 246595583631232706}
+  - {fileID: 8473715838366443870}
   m_Father: {fileID: 3925383126324683312}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7070252278479207908
@@ -13600,8 +13600,12 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 3179050175713196176}
+    m_TransformParent: {fileID: 3865515654071268462}
     m_Modifications:
+    - target: {fileID: 1649361158825916, guid: 4500da6a464da55408dd1ff2324163a7, type: 3}
+      propertyPath: m_Name
+      value: TownCenter
+      objectReference: {fileID: 0}
     - target: {fileID: 1649361158825916, guid: 4500da6a464da55408dd1ff2324163a7, type: 3}
       propertyPath: m_TagString
       value: TownCenter
@@ -13612,15 +13616,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4792142742180158, guid: 4500da6a464da55408dd1ff2324163a7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.36
+      value: 71.32652
       objectReference: {fileID: 0}
     - target: {fileID: 4792142742180158, guid: 4500da6a464da55408dd1ff2324163a7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.879999
+      value: 21.418514
       objectReference: {fileID: 0}
     - target: {fileID: 4792142742180158, guid: 4500da6a464da55408dd1ff2324163a7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 8.06
+      value: 44.74516
       objectReference: {fileID: 0}
     - target: {fileID: 4792142742180158, guid: 4500da6a464da55408dd1ff2324163a7, type: 3}
       propertyPath: m_LocalRotation.w
@@ -13645,8 +13649,30 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1649361158825916, guid: 4500da6a464da55408dd1ff2324163a7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 432980224566392639}
   m_SourcePrefab: {fileID: 100100000, guid: 4500da6a464da55408dd1ff2324163a7, type: 3}
+--- !u!1 &8470274538432159708 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1649361158825916, guid: 4500da6a464da55408dd1ff2324163a7, type: 3}
+  m_PrefabInstance: {fileID: 8469487239510014048}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &432980224566392639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8470274538432159708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54bc12707d7cc1540b8b920d451338a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHp: 2000
+  currentHp: 2000
 --- !u!4 &8473715838366443870 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4792142742180158, guid: 4500da6a464da55408dd1ff2324163a7, type: 3}
