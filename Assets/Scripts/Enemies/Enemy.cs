@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using HealthSystem;
+using Pool;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Serialization;
@@ -8,7 +9,7 @@ using UnityEngine.Serialization;
 namespace Enemies
 {
     [RequireComponent(typeof(NavMeshAgent))]
-    public class Enemy : MonoBehaviour
+    public class Enemy : MonoBehaviour,IPrototype
     {
         [SerializeField] public NavMeshAgent agent;
         [SerializeField] private UHealth health;
@@ -45,7 +46,7 @@ namespace Enemies
                 if (_targetGiverService.tryToGet(out _townCenter))
                 {
                     _building= _townCenter.GetComponent<Building>();
-                    _building.OnDestoyed += GetNewTarget;
+                    _building.OnDestoy += GetNewTarget;
                 }
             }
             
@@ -57,11 +58,11 @@ namespace Enemies
 
             var destination = _townCenter.transform.position;
             destination.y = transform.position.y;
-            StartCoroutine(Waiting(destination));
+            StartCoroutine(Wait2FramesAndSetDestination(destination));
             StartCoroutine(AlertSpawn());
         }
 
-        private IEnumerator Waiting(Vector3 destination)
+        private IEnumerator Wait2FramesAndSetDestination(Vector3 destination)
         {
             yield return 2;
             agent.SetDestination(destination);
@@ -90,23 +91,20 @@ namespace Enemies
         {
             OnDeath();
             OnDeath1(this.gameObject);
-            //agent.ResetPath();
-            //agent.isStopped = true;
-            //agent.updatePosition = false;
             gameObject.SetActive(false);
-            //Destroy(gameObject);
+
         }
 
         private void GetNewTarget()
         {
-            _building.OnDestoyed -= GetNewTarget;
+            _building.OnDestoy -= GetNewTarget;
             if (_targetGiverService.tryToGet(out _townCenter)&& gameObject.activeSelf==true )// nose porque se activava La corutina sin el segundo chequeo
             {
                 _building = _townCenter.GetComponent<Building>();
-                _building.OnDestoyed += GetNewTarget;
+                _building.OnDestoy += GetNewTarget;
                 var destination = _townCenter.transform.position;
                 destination.y = transform.position.y;
-                StartCoroutine(Waiting(destination));
+                StartCoroutine(Wait2FramesAndSetDestination(destination));
             }
             else
             {
@@ -114,6 +112,10 @@ namespace Enemies
             }
         }
 
+        public GameObject Clone(Vector3 Pos,Quaternion rot)
+        {
+            return Instantiate(this.gameObject,Pos,rot);
+        }
     } 
 }
 

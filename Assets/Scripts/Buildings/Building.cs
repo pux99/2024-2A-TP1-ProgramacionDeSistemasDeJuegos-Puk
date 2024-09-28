@@ -6,10 +6,11 @@ using UnityEngine;
 
 public class Building : MonoBehaviour
 {
+    
     [SerializeField] private UHealth health;
     [SerializeField] private int respawnTimer;
     private ITargetGiverService _targetGiverService;
-    public Action OnDestoyed;
+    public Action OnDestoy;
     private MeshRenderer _meshRenderer;
     private IEnumerator _respawn;
 
@@ -32,7 +33,7 @@ public class Building : MonoBehaviour
     void Destroyed()
     {
         //gameObject.SetActive(false);
-        OnDestoyed?.Invoke();
+        OnDestoy?.Invoke();
         _meshRenderer.enabled = false;
         _targetGiverService.RemoveTarget(this.gameObject);
         _respawn = Respawn(respawnTimer);

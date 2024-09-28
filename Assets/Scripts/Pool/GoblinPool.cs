@@ -20,16 +20,18 @@ namespace Pool
             else 
             { 
                 Instance = this; 
-            } 
+            }
+            prototype=goblinPrefab.GetComponent<IPrototype>();
         }
         private Queue<GameObject> _goblinQueue =new Queue<GameObject>();
         [SerializeField]private GameObject goblinPrefab;
+        [SerializeField] private IPrototype prototype;
 
         public GameObject GetElement(Vector3 pos,Quaternion rot)
         {
             if (_goblinQueue.Count > 0)
             {
-                //Debug.Log("New Goblin Respawn "+pos);
+                Debug.Log("New Goblin Respawn "+pos);
                 GameObject reuseGoblin= _goblinQueue.Dequeue();
                 reuseGoblin.SetActive(true);
                 reuseGoblin.GetComponent<Enemy>().agent.Warp(pos);
@@ -41,8 +43,8 @@ namespace Pool
 
         private GameObject CreateNewElement(Vector3 pos,Quaternion rot)
         {
-            //Debug.Log("New Goblin Born");
-            GameObject newGoblin= Instantiate(goblinPrefab,pos,rot);
+            Debug.Log("New Goblin Born");
+            GameObject newGoblin = prototype.Clone(pos,rot); //Instantiate(goblinPrefab,pos,rot);
             newGoblin.GetComponent<Enemy>().OnDeath1 += ReceiveElement;
             return newGoblin;
         }
