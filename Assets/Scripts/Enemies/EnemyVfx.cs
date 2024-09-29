@@ -34,6 +34,7 @@ namespace Enemies
                 return;
             var vfx = Instantiate(prefab, transform.position, transform.rotation);
             var mainModule = vfx.main;
+            vfx.transform.parent = transform.parent;
             mainModule.stopAction = ParticleSystemStopAction.Destroy;
         }
     }

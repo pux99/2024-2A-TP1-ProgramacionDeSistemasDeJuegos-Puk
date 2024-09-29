@@ -18,7 +18,12 @@ namespace Pool
             else 
             { 
                 Instance = this; 
-            } 
+            }
+
+            for (int i = 0; i < 20; i++)
+            {
+                GetElement(transform.position, transform.rotation);
+            }
         }
         private Queue<AudioPlayer> _audioSourceQueue =new Queue<AudioPlayer>();
         [SerializeField]private AudioPlayer audioSourcePrefab;
@@ -27,7 +32,7 @@ namespace Pool
         {
             if (_audioSourceQueue.Count > 0)
             {
-                //Debug.Log("AudioSource reborn");
+                Debug.Log("AudioSource reborn");
                 gameObject.SetActive(true);
                 return _audioSourceQueue.Dequeue();;
             }
@@ -36,8 +41,8 @@ namespace Pool
 
         private AudioPlayer CreateNewElement(Vector3 pos,Quaternion rot)
         {
-            //Debug.Log("New AudioSource Born");
-            AudioPlayer newAudioSource = Instantiate(audioSourcePrefab, pos, rot);
+            Debug.Log("New AudioSource Born");
+            AudioPlayer newAudioSource = Instantiate(audioSourcePrefab, pos, rot,transform);
             newAudioSource.EndOfSound += ReceiveElement;
             return newAudioSource;
         }

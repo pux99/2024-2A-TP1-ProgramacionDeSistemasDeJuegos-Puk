@@ -24,7 +24,7 @@ namespace Pool
             prototype=goblinPrefab.GetComponent<IPrototype>();
         }
         private Queue<GameObject> _goblinQueue =new Queue<GameObject>();
-        [SerializeField]private GameObject goblinPrefab;
+        [SerializeField] private GameObject goblinPrefab;
         [SerializeField] private IPrototype prototype;
 
         public GameObject GetElement(Vector3 pos,Quaternion rot)
@@ -46,6 +46,7 @@ namespace Pool
             Debug.Log("New Goblin Born");
             GameObject newGoblin = prototype.Clone(pos,rot); //Instantiate(goblinPrefab,pos,rot);
             newGoblin.GetComponent<Enemy>().OnDeath1 += ReceiveElement;
+            newGoblin.transform.parent = transform;
             return newGoblin;
         }
 

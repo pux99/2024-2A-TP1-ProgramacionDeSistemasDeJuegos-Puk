@@ -6,11 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="f807ec19-ba05-406b-b8a4-fafacbef9053" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.2024-2A-TP1-ProgramacionDeSistemasDeJuegos-Puk/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.2024-2A-TP1-ProgramacionDeSistemasDeJuegos-Puk/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Exernal/Goblin/Goblin.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Exernal/Goblin/Goblin.controller" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/Building.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Buildings/Building.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemies/Spawner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemies/Spawner.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/HealthSystem/UHealth.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/HealthSystem/UHealth.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemies/EnemyVfx.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemies/EnemyVfx.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/HealthSystem/Health.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/HealthSystem/Health.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Pool/AudioSourcePool.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Pool/AudioSourcePool.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Pool/GoblinPool.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Pool/GoblinPool.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Pool/IPrototype.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Pool/IPrototype.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +67,7 @@
 }</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="C:\Unity\2022.3.41f1\Editor\Unity.exe" />
+      <option name="EXE_PATH" value="C:\Unity\2022.3.16f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-projectPath D:\Desarrollo\Unity\2024-2A-TP1-ProgramacionDeSistemasDeJuegos-Puk -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="D:\Desarrollo\Unity\2024-2A-TP1-ProgramacionDeSistemasDeJuegos-Puk" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -74,7 +75,7 @@
       <method v="2" />
     </configuration>
     <configuration name="Unit Tests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="C:\Unity\2022.3.41f1\Editor\Unity.exe" />
+      <option name="EXE_PATH" value="C:\Unity\2022.3.16f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath D:\Desarrollo\Unity\2024-2A-TP1-ProgramacionDeSistemasDeJuegos-Puk -testResults Logs/results.xml -testPlatform EditMode -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="D:\Desarrollo\Unity\2024-2A-TP1-ProgramacionDeSistemasDeJuegos-Puk" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -91,10 +92,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="23380">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="23380" />
+      <option name="pid" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -130,37 +131,5 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Buildings/Building.cs</url>
-          <line>34</line>
-          <properties documentPath="D:\Desarrollo\Unity\2024-2A-TP1-ProgramacionDeSistemasDeJuegos-Puk\Assets\Scripts\Buildings\Building.cs" containingFunctionPresentation="Method 'Destroyed'">
-            <startOffsets>
-              <option value="868" />
-            </startOffsets>
-            <endOffsets>
-              <option value="889" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/HealthSystem/UHealth.cs</url>
-          <line>46</line>
-          <properties documentPath="D:\Desarrollo\Unity\2024-2A-TP1-ProgramacionDeSistemasDeJuegos-Puk\Assets\Scripts\HealthSystem\UHealth.cs" containingFunctionPresentation="Method 'death'">
-            <startOffsets>
-              <option value="1007" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1024" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

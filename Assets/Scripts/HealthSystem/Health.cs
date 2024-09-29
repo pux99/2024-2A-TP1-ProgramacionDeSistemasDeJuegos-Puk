@@ -1,5 +1,4 @@
 using System;
-using UnityEngine;
 
 namespace HealthSystem
 {
@@ -22,19 +21,19 @@ namespace HealthSystem
             Hp = hp;
         }
 
-        public void Heal(int Heal)
+        public void Heal(int heal)
         {
-            if (Heal > 0)
+            if (heal > 0)
             {
                 int oldValue = Hp;
-                Hp += Heal;
+                Hp += heal;
                 if (Hp > MaxHp)
                     Hp = MaxHp;
                 OnHeal.Invoke(oldValue, Hp);
             }
             else
             {
-                Debug.LogWarning("Heal do not accept negative numbers");
+                Console.WriteLine("Heal do not accept negative numbers");
             }
         }
 
@@ -51,7 +50,7 @@ namespace HealthSystem
             }
             else
             {
-                Debug.LogWarning("Heal do not accept negative numbers");
+                Console.WriteLine("Heal do not accept negative numbers");
             }
         }
 
