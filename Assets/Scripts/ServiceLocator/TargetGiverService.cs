@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Enemies;
-using Unity;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -19,7 +17,7 @@ public class TargetGiverService: MonoBehaviour,ITargetGiverService
          return targets[Random.Range(0, targets.Count)];
      }
 
-     public bool tryToGet(out GameObject target)
+     public bool TryToGet(out GameObject target)
      {
          if (targets.Count > 0)
          {

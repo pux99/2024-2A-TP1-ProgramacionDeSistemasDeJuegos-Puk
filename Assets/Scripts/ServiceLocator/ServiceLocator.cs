@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
@@ -14,7 +13,6 @@ public class ServiceLocator : MonoBehaviour
             {
                 _instance = new GameObject("service Locator", typeof(ServiceLocator)).GetComponent<ServiceLocator>();
             }
-
             return _instance;
         }
         private set => _instance = value;

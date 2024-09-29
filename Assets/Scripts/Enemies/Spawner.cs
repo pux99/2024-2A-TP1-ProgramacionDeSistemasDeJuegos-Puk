@@ -1,8 +1,5 @@
-using System;
 using System.Collections;
-using Pool;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class Spawner : MonoBehaviour
 {
@@ -17,7 +14,6 @@ public class Spawner : MonoBehaviour
     {
         if (frequency > 0) period = 1 / frequency;
     }
-    
     private IEnumerator Start()
     {
         _goblinService = ServiceLocator.Instance.GetService<IGoblinService>();
@@ -29,13 +25,9 @@ public class Spawner : MonoBehaviour
             for (int i = 0; i < spawnsPerPeriod; i++)
             {
                 GameObject newGoblin = _goblinService.CreateGoblin(transform.position, transform.rotation);
-                //Instantiate(characterPrefab, transform.position, transform.rotation);
             }
-
-            
         }
     }
-
     void EndRaid()
     {
         _raidIsActive = false;

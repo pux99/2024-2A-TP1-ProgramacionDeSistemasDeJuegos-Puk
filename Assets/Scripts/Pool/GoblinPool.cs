@@ -1,16 +1,15 @@
-using System;
 using System.Collections.Generic;
 using Enemies;
 using UnityEngine;
-using UnityEngine.AI;
-using UnityEngine.Serialization;
 
 namespace Pool
 {
     public class GoblinPool : MonoBehaviour,IPool<GameObject>
     {
+        [SerializeField] private GameObject goblinPrefab;
+        private readonly Queue<GameObject> _goblinQueue =new Queue<GameObject>();
+        private IPrototype _prototype;
         public static GoblinPool Instance { get; private set; }
-
         private void Awake() 
         { 
             if (Instance != null && Instance != this) 
@@ -21,11 +20,9 @@ namespace Pool
             { 
                 Instance = this; 
             }
-            prototype=goblinPrefab.GetComponent<IPrototype>();
+            _prototype=goblinPrefab.GetComponent<IPrototype>();
         }
-        private Queue<GameObject> _goblinQueue =new Queue<GameObject>();
-        [SerializeField] private GameObject goblinPrefab;
-        [SerializeField] private IPrototype prototype;
+        
 
         public GameObject GetElement(Vector3 pos,Quaternion rot)
         {
@@ -44,8 +41,8 @@ namespace Pool
         private GameObject CreateNewElement(Vector3 pos,Quaternion rot)
         {
             Debug.Log("New Goblin Born");
-            GameObject newGoblin = prototype.Clone(pos,rot); //Instantiate(goblinPrefab,pos,rot);
-            newGoblin.GetComponent<Enemy>().OnDeath1 += ReceiveElement;
+            GameObject newGoblin = _prototype.Clone(pos,rot);
+            newGoblin.GetComponent<Enemy>().ReturnToPool += ReceiveElement;
             newGoblin.transform.parent = transform;
             return newGoblin;
         }

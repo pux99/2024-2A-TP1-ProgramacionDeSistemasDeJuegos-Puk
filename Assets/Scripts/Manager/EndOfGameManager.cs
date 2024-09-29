@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using Manager;
 using UnityEngine;
 
 public class EndOfGameManager : MonoBehaviour
@@ -14,6 +13,6 @@ public class EndOfGameManager : MonoBehaviour
 
     private void GoblisWin()
     {
-        uiManager.GoblisWin();
+        uiManager.GoblinsWin();
     }
 }

@@ -15,7 +15,6 @@ namespace Enemies
                 result = default;
                 return false;
             }
-
             result = candidates[UnityEngine.Random.Range(0, candidates.Length)];
             return result != null;
         }

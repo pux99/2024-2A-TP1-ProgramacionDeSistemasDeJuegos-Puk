@@ -6,7 +6,6 @@ namespace Pool
 {
     public class AudioSourcePool : MonoBehaviour,IPool<AudioPlayer>
     {
-
         public static AudioSourcePool Instance { get; private set; }
 
         private void Awake() 

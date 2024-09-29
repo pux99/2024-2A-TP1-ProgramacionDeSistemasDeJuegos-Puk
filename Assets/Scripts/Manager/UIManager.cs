@@ -1,24 +1,24 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIManager : MonoBehaviour
+namespace Manager
 {
-    
-    [SerializeField] private Color goblinsColor;
-    [SerializeField] private string goblinsMesage;
-    [SerializeField] private Color humansColor;
-    [SerializeField] private string humansMesage;
-    [SerializeField] private Image endOfRaidImage;
-    [SerializeField] private TextMeshProUGUI endOfRaidText;
-
-    public void GoblisWin()
+    public class UIManager : MonoBehaviour
     {
-        endOfRaidImage.gameObject.SetActive(true);
-        endOfRaidImage.color = goblinsColor;
-        endOfRaidText.text = goblinsMesage;
+    
+        [SerializeField] private Color goblinsColor;
+        [SerializeField] private string goblinsMesage;
+        [SerializeField] private Color humansColor;
+        [SerializeField] private string humansMesage;
+        [SerializeField] private Image endOfRaidImage;
+        [SerializeField] private TextMeshProUGUI endOfRaidText;
+
+        public void GoblinsWin()
+        {
+            endOfRaidImage.gameObject.SetActive(true);
+            endOfRaidImage.color = goblinsColor;
+            endOfRaidText.text = goblinsMesage;
+        }
     }
 }

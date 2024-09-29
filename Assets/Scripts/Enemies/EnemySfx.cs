@@ -1,9 +1,6 @@
-using System;
 using Audio;
 using FlyWeight;
-using Pool;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Enemies
 {
@@ -13,7 +10,7 @@ namespace Enemies
         [SerializeField] private AudioPlayer audioSourcePrefab;
         [SerializeField] private SoAudioClipList spawnClips;
         [SerializeField] private SoAudioClipList explosionClips;
-        [SerializeField] private ISoundService _soundService;
+        private ISoundService _soundService;
 
         private Enemy _enemy;
 
@@ -64,7 +61,6 @@ namespace Enemies
             if (!container.TryGetRandom(out var clipData))
                 return;
             _soundService.PLay(clipData,transform.position, transform.rotation);
-            //SpawnSource(sourcePrefab).Play(clipData);
         }
 
         private AudioPlayer SpawnSource(AudioPlayer prefab)

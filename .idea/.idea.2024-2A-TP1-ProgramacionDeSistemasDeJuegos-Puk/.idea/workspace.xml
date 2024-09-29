@@ -6,12 +6,25 @@
   <component name="ChangeListManager">
     <list default="true" id="f807ec19-ba05-406b-b8a4-fafacbef9053" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.2024-2A-TP1-ProgramacionDeSistemasDeJuegos-Puk/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.2024-2A-TP1-ProgramacionDeSistemasDeJuegos-Puk/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemies/EnemyVfx.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemies/EnemyVfx.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/Building.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Buildings/Building.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemies/Enemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemies/Enemy.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemies/EnemySfx.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemies/EnemySfx.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemies/RandomContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemies/RandomContainer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemies/Spawner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemies/Spawner.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/HealthSystem/Health.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/HealthSystem/Health.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/HealthSystem/UHealth.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/HealthSystem/UHealth.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Manager/EndOfGameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Manager/EndOfGameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Manager/UIManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Manager/UIManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Pool/AudioSourcePool.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Pool/AudioSourcePool.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Pool/GoblinPool.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Pool/GoblinPool.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Pool/IPool.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Pool/IPool.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Pool/IPrototype.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Pool/IPrototype.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ServiceLocator/GoblinService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ServiceLocator/GoblinService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ServiceLocator/IGoblinService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ServiceLocator/IGoblinService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ServiceLocator/ISoundService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ServiceLocator/ISoundService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ServiceLocator/ITargetGiverService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ServiceLocator/ITargetGiverService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ServiceLocator/ServiceLocator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ServiceLocator/ServiceLocator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ServiceLocator/TargetGiverService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ServiceLocator/TargetGiverService.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

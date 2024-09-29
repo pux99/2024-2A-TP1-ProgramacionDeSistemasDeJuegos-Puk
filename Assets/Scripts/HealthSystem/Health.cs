@@ -10,11 +10,7 @@ namespace HealthSystem
         public Action OnDeath;
         public Action<int, int> OnDamage;
         public Action<int, int> OnHeal;
-
-        public Health()
-        {
-            
-        }
+        
         public Health(int maxHp, int hp)
         {
             MaxHp = maxHp;

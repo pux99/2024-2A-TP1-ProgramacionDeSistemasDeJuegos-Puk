@@ -19,11 +19,6 @@ namespace HealthSystem
             _health.OnDeath += death;
         }
 
-        private void Start()
-        {
-            
-        }
-
         public void Heal(int heal)
         {
             _health.Heal(heal);
