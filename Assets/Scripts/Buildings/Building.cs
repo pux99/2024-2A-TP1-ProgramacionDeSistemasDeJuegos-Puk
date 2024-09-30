@@ -9,7 +9,7 @@ namespace Buildings
     {
         [SerializeField] private UHealth health;
         [SerializeField] private int respawnTimer;
-        private ITargetGiverService _targetGiverService;
+        private ITargetService _targetService;
         private MeshRenderer _meshRenderer;
         private IEnumerator _respawn;
         public Action OnDestoy;
@@ -18,15 +18,15 @@ namespace Buildings
         {
             health.OnDead += Destroyed;
             _meshRenderer = GetComponent<MeshRenderer>();
-            _targetGiverService = ServiceLocator.Instance.GetService<ITargetGiverService>();
-            _targetGiverService.AddTarget(this.gameObject);
-            _targetGiverService.NoMoreBuildings += StopRespawn;
+            _targetService = ServiceLocator.Instance.GetService<ITargetService>();
+            _targetService.AddTarget(this.gameObject);
+            _targetService.NoMoreBuildings += StopRespawn;
         }
         void Destroyed()
         {
             OnDestoy?.Invoke();
             _meshRenderer.enabled = false;
-            _targetGiverService.RemoveTarget(this.gameObject);
+            _targetService.RemoveTarget(this.gameObject);
             _respawn = Respawn(respawnTimer);
             StartCoroutine(_respawn);
         }
@@ -36,7 +36,7 @@ namespace Buildings
             gameObject.SetActive(true);
             health.FullHeal();
             _meshRenderer.enabled = true;
-            _targetGiverService.AddTarget(this.gameObject);
+            _targetService.AddTarget(this.gameObject);
         }
         void StopRespawn() => StopCoroutine(_respawn);
     

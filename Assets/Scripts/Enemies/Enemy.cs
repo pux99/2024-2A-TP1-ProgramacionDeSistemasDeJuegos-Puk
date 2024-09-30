@@ -14,7 +14,7 @@ namespace Enemies
         [SerializeField] public NavMeshAgent agent;
         [SerializeField] private UHealth health;
         private GameObject _townCenter;
-        private ITargetGiverService _targetGiverService;
+        private ITargetService _targetService;
         private Building _building;
         public event Action OnSpawn = delegate { };
         public event Action OnDeath = delegate { };
@@ -25,9 +25,9 @@ namespace Enemies
         private void Awake()
         {
             FetchComponents();
-            _targetGiverService = ServiceLocator.Instance.GetService<ITargetGiverService>();
+            _targetService = ServiceLocator.Instance.GetService<ITargetService>();
             health.OnDead += Die;
-            _targetGiverService.NoMoreBuildings += Die;
+            
         }
 
         private void FetchComponents()
@@ -36,12 +36,17 @@ namespace Enemies
             health ??= GetComponent<UHealth>();
         }
 
+        private void Start()
+        {
+            _targetService.NoMoreBuildings += Die;
+        }
+
         private void OnEnable()
         {
             //Is this necessary?? We're like, searching for it from every enemy D:
             if (!_townCenter)
             {
-                if (_targetGiverService.TryToGet(out _townCenter))
+                if (_targetService.TryToGet(out _townCenter))
                 {
                     _building= _townCenter.GetComponent<Building>();
                     _building.OnDestoy += GetNewTarget;
@@ -62,6 +67,7 @@ namespace Enemies
         {
             yield return 2;
             agent.SetDestination(destination);
+            
         }
         private IEnumerator AlertSpawn()
         {
@@ -71,6 +77,7 @@ namespace Enemies
         }
         private void Update()
         {
+            
             if (agent.hasPath
                 && Vector3.Distance(transform.position, agent.destination) <= agent.stoppingDistance)
             {
@@ -90,13 +97,14 @@ namespace Enemies
         private void GetNewTarget()
         {
             _building.OnDestoy -= GetNewTarget;
-            if (_targetGiverService.TryToGet(out _townCenter)&& gameObject.activeSelf)// nose porque se activava La corutina sin el segundo chequeo
+            if (_targetService.TryToGet(out _townCenter)&& gameObject.activeSelf)// nose porque se activava La corutina sin el segundo chequeo
             {
                 _building = _townCenter.GetComponent<Building>();
                 _building.OnDestoy += GetNewTarget;
                 var destination = _townCenter.transform.position;
                 destination.y = transform.position.y;
                 StartCoroutine(Wait2FramesAndSetDestination(destination));
+                agent.ResetPath();
             }
             else
             {

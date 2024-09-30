@@ -44,17 +44,6 @@ public class ServiceLocator : MonoBehaviour
             _services[typeof(T)] = service;
         }
     }
-    public void RegisterService(Type type ,object service)
-    {
-        if (!_services.ContainsKey(type))
-        {
-            _services.Add(type,service);
-        }
-        else
-        {
-            _services[type] = service;
-        }
-    }
 
     public T GetService<T>()
     {
@@ -68,20 +57,6 @@ public class ServiceLocator : MonoBehaviour
             return default;
         }
     }
-
-    public bool TryGetService<T>(out T service)
-    {
-        if (_services.TryGetValue(typeof(T), out object serviceObject))
-        {
-            service = (T)serviceObject;
-            return true;
-        }
-        else
-        {
-            service = default;
-            Debug.Log($"there is no register of the type {typeof(T)}");
-            return false;
-        }
-    }
+    
 }
 

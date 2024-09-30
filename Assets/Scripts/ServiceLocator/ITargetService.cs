@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public interface ITargetGiverService
+public interface ITargetService
 {
 
     GameObject GetTarget();

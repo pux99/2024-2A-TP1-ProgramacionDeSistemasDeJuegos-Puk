@@ -16,7 +16,7 @@ namespace HealthSystem
             _health = new Health(maxHp,currentHp);
             _health.OnHeal +=LifeChange ;
             _health.OnDamage += LifeChange;
-            _health.OnDeath += death;
+            _health.OnDeath += Death;
         }
 
         public void Heal(int heal)
@@ -37,7 +37,7 @@ namespace HealthSystem
             currentHp = newHp;
         }
 
-        void death()
+        void Death()
         {
             OnDead?.Invoke();
         }

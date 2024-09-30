@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class TargetGiverService: MonoBehaviour,ITargetGiverService
+public class TargetService: MonoBehaviour,ITargetService
  {
      private void Awake()
      {
          ServiceLocator serviceLocator = ServiceLocator.Instance;
-         serviceLocator.RegisterService<ITargetGiverService>(this);
+         serviceLocator.RegisterService<ITargetService>(this);
      }
 
      [SerializeField] private List<GameObject> targets;
@@ -16,7 +16,6 @@ public class TargetGiverService: MonoBehaviour,ITargetGiverService
      {
          return targets[Random.Range(0, targets.Count)];
      }
-
      public bool TryToGet(out GameObject target)
      {
          if (targets.Count > 0)
@@ -24,21 +23,13 @@ public class TargetGiverService: MonoBehaviour,ITargetGiverService
              target=targets[Random.Range(0, targets.Count)];
              return true;
          }
-
          target = default;
          NoMoreBuildings?.Invoke();
          return false;
      }
+     public void RemoveTarget(GameObject target)=> targets.Remove(target);
 
-     public void RemoveTarget(GameObject target)
-     {
-         targets.Remove(target);
-     }
-
-     public void AddTarget(GameObject target)
-     {
-         targets.Add(target);
-     }
+     public void AddTarget(GameObject target)=> targets.Add(target);
 
      public event Action NoMoreBuildings;
  }

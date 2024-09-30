@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class EndOfGameManager : MonoBehaviour
 {
-    private ITargetGiverService _targetService;
+    private ITargetService _targetService;
     [SerializeField]private UIManager uiManager;
     private void Start()
     {
-        _targetService = ServiceLocator.Instance.GetService<ITargetGiverService>();
+        _targetService = ServiceLocator.Instance.GetService<ITargetService>();
         _targetService.NoMoreBuildings += GoblisWin;
     }
 
